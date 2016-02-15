@@ -1,0 +1,15 @@
+{{#each objects as |object|}}
+	{{#if (eq object.nameUnique nameUnique)}}
+		<select>
+		{{#each object.options as |option|}}
+			<option>{{option.text}}</option>
+		{{/each}}
+		</select>
+
+		<div class="children">
+			{{#each object.options.0.children as |child|}}
+				{{field-choose objects=objects nameUnique=child}}
+			{{/each}}
+		</div>
+	{{/if}}
+{{/each}}
