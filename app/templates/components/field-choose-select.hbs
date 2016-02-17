@@ -1,0 +1,25 @@
+{{#each selects as |select|}}
+	{{#if (eq select.nameUnique nameUnique)}}
+		<select onchange={{action "changedSelect" value="target.value"}}>
+		{{#each select.options as |option|}}
+			<option value="{{option.value}}">{{option.text}}</option>
+		{{/each}}
+		</select>
+
+		<div class="children">
+			{{#if setOption}}
+				{{#each select.options as |option|}}
+					{{#if (eq option.value setOption)}}
+						{{#each option.children as |child|}}
+							{{field-choose-select selects=selects nameUnique=child}}
+						{{/each}}
+					{{/if}}
+				{{/each}}
+			{{else}}
+				{{#each select.options.0.children as |child|}}
+					{{field-choose-select selects=selects nameUnique=child}}
+				{{/each}}
+			{{/if}}
+		</div>
+	{{/if}}
+{{/each}}

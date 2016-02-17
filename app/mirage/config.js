@@ -1,88 +1,98 @@
 export default function() {
-  this.get('/field-choose-objects', function(db,request) {
-    let fieldChooseObjects = [{
-      type: 'fieldChooseObjects',
+  this.get('/field-choose-selects', function(db,request) {
+    let fieldChooseSelects = [{
+      type: 'fieldChooseSelects',
       id: 1,
       attributes: {
         'name-unique': 'root',
         options: [{
-          text: 'Select 1',
-          children: ['select_1']
+          text: 'Chemistry',
+          value: 'chem',
+          children: ['chem_type']
         }, {
-          text: 'Select 2',
-          children: ['select_2']
+          text: 'Temperature',
+          value: 'temp',
+          children: ['temp_type']
         }]
       }
     }, {
-      type: 'fieldChooseObjects',
+      type: 'fieldChooseSelects',
       id: 2,
       attributes: {
-        'name-unique': 'select_1',
+        'name-unique': 'chem_test',
         options: [{
-          text: 'Select 3',
-          children: ['select_3']
+          text: 'HM Bottle Avg',
+          value: 'HM_btl_avg',
+          children: null
         }, {
-          text: 'None',
+          text: 'BLAD (HM hole OES)',
+          value: 'BLAD',
           children: null
         }]
       }
     }, {
-      type: 'fieldChooseObjects',
+      type: 'fieldChooseSelects',
       id: 3,
       attributes: {
-        'name-unique': 'select_3',
+        'name-unique': 'chem_elem',
         options: [{
-          text: 'Select 4 & 5',
-          children: ['select_4', 'select_5']
+          text: 'C',
+          value: 'C',
+          children: null
         }, {
-          text: 'None',
+          text: 'Mn',
+          value: 'MN',
           children: null
         }]
       }
     }, {
-      type: 'fieldChooseObjects',
+      type: 'fieldChooseSelects',
       id: 4,
       attributes: {
-        'name-unique': 'select_4',
+        'name-unique': 'chem_type',
         options: [{
-          text: 'None',
-          children: null
+          text: 'Single Test',
+          value: 'chem_single',
+          children: ['chem_test', 'chem_elem']
+        }, {
+          text: 'Two Test Difference',
+          value: 'chem_diff',
+          children: ['chem_test', 'chem_test', 'chem_elem']
         }]
       }
     }, {
-      type: 'fieldChooseObjects',
+      type: 'fieldChooseSelects',
       id: 5,
       attributes: {
-        'name-unique': 'select_5',
+        'name-unique': 'temp_type',
         options: [{
-          text: 'None',
+          text: 'Single Test',
+          value: 'temp_single',
+          children: ['temp_test']
+        }, {
+          text: 'Two Test Difference',
+          value: 'temp_diff',
+          children: ['temp_test', 'temp_test']
+        }]
+      }
+    }, {
+      type: 'fieldChooseSelects',
+      id: 6,
+      attributes: {
+        'name-unique': 'temp_test',
+        options: [{
+          text: 'HM Ladle',
+          value: 'HM_ldl',
+          children: null
+        }, {
+          text: 'Tap (final bomb)',
+          value: 'tap',
           children: null
         }]
       }
     }];
 
 
-    return { data: fieldChooseObjects };
-
-    // let fieldChooseRoot = fieldChooseObjects.filter(function(i) {
-    //   return i.attributes.name_id.toLowerCase().indexOf('root') !== -1;
-    // })[0];
-
-    // return { data: fieldChooseRoot };
-
-
-    // if(request.queryParams.name_id !== undefined) {
-    //   let fieldChooseObject = fieldChooseObjects.filter(function(i) {
-    //     return i.attributes.name_id.toLowerCase().indexOf(request.queryParams.name_id.toLowerCase()) !== -1;
-    //   });
-      
-    //   return { data: fieldChooseObject[0] };
-    // } else {
-    //   let fieldChooseObject = fieldChooseObjects.filter(function(i) {
-    //     return i.attributes.name_id.toLowerCase().indexOf('root') !== -1;
-    //   });
-
-    //   return { data: fieldChooseObject[0] };
-    // }
+    return { data: fieldChooseSelects };
   });
 }
