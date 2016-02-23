@@ -1,12 +1,42 @@
-<h2 id="title">Welcome to Ember</h2>
+<div class="l-body">
+	<div class="l-left">
 
 
+		<div class="accordion panel-group" role="tablist" aria-multiselectable="true">
+
+		    <div class="panel panel-primary">
+		        <div class="panel-heading" role="button" data-toggle="collapse" data-parent=".accordion" href="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+		            <h4 class="panel-title">Main</h4>
+		        </div>
+		        <div id="collapseOne" class="panel-collapse collapse in" role="tabpanel" aria-labelledby="headingOne">
+		            <div class="panel-body">
+		    			{{main-axes model=model}}
+		            </div>
+		        </div>
+		    </div>
+
+			<div class="panel panel-primary">
+				<div class="panel-heading" role="button" data-toggle="collapse" data-parent=".accordion" href="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+			  		<h4 class="panel-title">Filters</h4>
+				</div>
+				<div id="collapseTwo" class="panel-collapse collapse" role="tabpanel" aria-labelledby="headingTwo">
+			  		<div class="panel-body">
+						{{main-filters model=model}}
+			  		</div>
+				</div>
+			</div>
+		   
+		</div>
+
+	</div>
+</div>
 
 
-{{field-choose-area
-	selects=model.fieldChooseSelects
-	filters=model.fieldChooseFilters
-	nameUnique="root"}}
+{{!-- {{field-choose-area
+	selects = model.fieldChooseSelects
+	filters = model.fieldChooseFilters
+	
+	nameUnique="root"}} --}}
 
 
 

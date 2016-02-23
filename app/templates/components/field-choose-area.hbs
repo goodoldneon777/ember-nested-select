@@ -1,3 +1,9 @@
-{{field-choose-select selects=selects nameUnique=nameUnique}}
+{{field-choose-select
+	selects = selects
+	nameUnique = nameUnique
+	filterToggle = (action 'filterToggle')}}
 
-{{field-choose-filter filters=filters}}
+
+{{#if filterFlag}}
+	{{field-choose-filter filters=filters}}
+{{/if}}

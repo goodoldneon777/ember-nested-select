@@ -5,6 +5,7 @@ export default function() {
       id: 1,
       attributes: {
         'name-unique': 'root',
+        'foo': 'bar',
         options: [{
           text: 'Chemistry',
           value: 'chem',
@@ -13,6 +14,10 @@ export default function() {
           text: 'Temperature',
           value: 'temp',
           children: ['temp_type']
+        }, {
+          text: 'Equipment',
+          value: 'equipment',
+          children: ['equipment']
         }]
       }
     }, {
@@ -87,6 +92,53 @@ export default function() {
         }, {
           text: 'Tap (final bomb)',
           value: 'tap',
+          children: null
+        }]
+      }
+    }, {
+      type: 'fieldChooseSelects',
+      id: 7,
+      attributes: {
+        'name-unique': 'equipment',
+        options: [{
+          text: 'BOP Vessel',
+          value: 'BOP_vsl',
+          filterEnable: false,
+          children: ['BOP_vsl']
+        }, {
+          text: 'Degas Vessel',
+          value: 'RH_vsl',
+          filterEnable: false,
+          children: ['RH_vsl']
+        }]
+      }
+    }, {
+      type: 'fieldChooseSelects',
+      id: 8,
+      attributes: {
+        'name-unique': 'BOP_vsl',
+        options: [{
+          text: '25 Vessel',
+          value: '25',
+          children: null
+        }, {
+          text: '26 Vessel',
+          value: '26',
+          children: null
+        }]
+      }
+    }, {
+      type: 'fieldChooseSelects',
+      id: 8,
+      attributes: {
+        'name-unique': 'BOP_vsl',
+        options: [{
+          text: '1 Vessel',
+          value: '1',
+          children: null
+        }, {
+          text: '2 Vessel',
+          value: '2',
           children: null
         }]
       }
