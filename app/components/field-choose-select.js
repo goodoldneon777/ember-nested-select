@@ -13,7 +13,7 @@ export default Ember.Component.extend({
         var component = this;
 
         var select = this.get('selects').filter(function(item) {    //Filter for the target select.
-            if (item.get('nameUnique') === component.get('nameUnique')) { return true; }
+            if (item.get('name') === component.get('name')) { return true; }
         })[0];
 
         this.set('select', select); //Set to the target select.

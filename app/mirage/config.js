@@ -4,8 +4,7 @@ export default function() {
       type: 'fieldChooseSelects',
       id: 1,
       attributes: {
-        'name-unique': 'root',
-        'foo': 'bar',
+        name: 'root',
         options: [{
           text: 'Chemistry',
           value: 'chem',
@@ -24,7 +23,7 @@ export default function() {
       type: 'fieldChooseSelects',
       id: 2,
       attributes: {
-        'name-unique': 'chem_test',
+        name: 'chem_test',
         options: [{
           text: 'HM Bottle Avg',
           value: 'HM_btl_avg',
@@ -39,7 +38,7 @@ export default function() {
       type: 'fieldChooseSelects',
       id: 3,
       attributes: {
-        'name-unique': 'chem_elem',
+        name: 'chem_elem',
         options: [{
           text: 'C',
           value: 'C',
@@ -54,7 +53,7 @@ export default function() {
       type: 'fieldChooseSelects',
       id: 4,
       attributes: {
-        'name-unique': 'chem_type',
+        name: 'chem_type',
         options: [{
           text: 'Single Test',
           value: 'chem_single',
@@ -69,7 +68,7 @@ export default function() {
       type: 'fieldChooseSelects',
       id: 5,
       attributes: {
-        'name-unique': 'temp_type',
+        name: 'temp_type',
         options: [{
           text: 'Single Test',
           value: 'temp_single',
@@ -84,7 +83,7 @@ export default function() {
       type: 'fieldChooseSelects',
       id: 6,
       attributes: {
-        'name-unique': 'temp_test',
+        name: 'temp_test',
         options: [{
           text: 'HM Ladle',
           value: 'HM_ldl',
@@ -99,7 +98,7 @@ export default function() {
       type: 'fieldChooseSelects',
       id: 7,
       attributes: {
-        'name-unique': 'equipment',
+        name: 'equipment',
         options: [{
           text: 'BOP Vessel',
           value: 'BOP_vsl',
@@ -116,7 +115,7 @@ export default function() {
       type: 'fieldChooseSelects',
       id: 8,
       attributes: {
-        'name-unique': 'BOP_vsl',
+        name: 'BOP_vsl',
         options: [{
           text: '25 Vessel',
           value: '25',
@@ -131,7 +130,7 @@ export default function() {
       type: 'fieldChooseSelects',
       id: 8,
       attributes: {
-        'name-unique': 'BOP_vsl',
+        name: 'BOP_vsl',
         options: [{
           text: '1 Vessel',
           value: '1',
@@ -146,5 +145,29 @@ export default function() {
 
 
     return { data: fieldChooseSelects };
+  });
+
+
+
+  this.get('/field-choose-filters', function(db,request) {
+    let fieldChooseFilters = [{
+      type: 'fieldChooseFilters',
+      id: 1,
+      attributes: {
+        options: [{
+          text: 'No Filter',
+          value: 'none'
+        }, {
+          text: '=',
+          value: '='
+        }, {
+          text: '>',
+          value: '>'
+        }]
+      }
+    }];
+
+
+    return { data: fieldChooseFilters };
   });
 }

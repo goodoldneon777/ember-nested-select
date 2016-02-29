@@ -12,7 +12,7 @@
 				{{#each option.children as |child|}}
 					{{field-choose-select
 						selects = selects
-						nameUnique = child
+						name = child
 						filterToggle = filterToggle}}
 				{{/each}}
 {{!-- 			{{/if}}
@@ -21,7 +21,7 @@
 		{{#each select.options.0.children as |child|}}
 			{{field-choose-select
 				selects = selects
-				nameUnique = child
+				name = child
 				filterToggle = filterToggle}}
 		{{/each}}
 	{{/if}} --}}
