@@ -70,7 +70,7 @@ func getSelects() Output {
         		output.Data = append(output.Data, item) //Add the current "select object" to the output array.
         	}
 
-            item.Type = "fieldChooseSelects"
+            item.Type = "fieldChooseSelect"
             item.Id = id
         	item.Attributes.Name = name_id    //Assign the "select object" name.
         }

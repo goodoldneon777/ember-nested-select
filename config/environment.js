@@ -2,6 +2,15 @@
 
 module.exports = function(environment) {
   var ENV = {
+    contentSecurityPolicy: {
+      'default-src': "'none'",
+      'script-src': "'self' 'unsafe-eval' github.com localhost",
+      'font-src': "'self'",
+      'connect-src': "'self' 'unsafe-eval' github.com localhost",
+      'img-src': "'self'",
+      'style-src': "'self'",
+      'media-src': "'self'"
+    },
     modulePrefix: 'data-chart',
     environment: environment,
     baseURL: '/',
@@ -26,7 +35,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
     ENV['ember-cli-mirage'] = {
-      // enabled: false
+      enabled: false
     }
   }
 
