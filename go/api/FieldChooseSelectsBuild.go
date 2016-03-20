@@ -9,14 +9,12 @@ import (
     "database/sql"
 )
 
-var currentId int
-
-var items Items
-
 // Give us some seed data
-func init() {
+func FieldChooseSelectsBuild() Items {
+    var items Items
     var item Item
-    var prev_name_id string
+    var currentId int
+    var prevNameId string
 
 
     query := `
@@ -45,9 +43,11 @@ func init() {
 
         rows.Scan(&name_id, &option_text, &option_value)    //Assign row data to variables.
 
-        if name_id != prev_name_id {    //If the loop has gotten to a new dropdown (new name_id).
-            if len(prev_name_id) > 0 { //Make sure this isn't the first row in the recordset (prev_name_id has a value).
-                RepoCreateItem(item)    //Add the current item to the output array.
+        if name_id != prevNameId {    //If the loop has gotten to a new dropdown (new name_id).
+            if len(prevNameId) > 0 { //Make sure this isn't the first row in the recordset (prevNameId has a value).
+                currentId += 1
+                item.Id = currentId
+                items = append(items, item) //Add the current item to the output array.
             }
 
             item.Type = "fieldChooseSelect"
@@ -61,26 +61,9 @@ func init() {
 
         item.Attributes.Options = append(item.Attributes.Options, option)   //Add the current option to the option array.
         
-        prev_name_id = name_id  //The current name_id will be prev_name_id on the next iteration.
+        prevNameId = name_id  //The current name_id will be prevNameId on the next iteration.
     }
-}
 
 
-func RepoFindItem(id int) Item {
-    for _, t := range items {
-        if t.Id == id {
-            return t
-        }
-    }
-    // return empty Item if not found
-    return Item{}
-}
-
-
-func RepoCreateItem(t Item) Item {
-    //Any created entities are lost when the server is restarted.
-    currentId += 1
-    t.Id = currentId
-    items = append(items, t)
-    return t
+    return items
 }

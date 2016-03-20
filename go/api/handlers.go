@@ -11,6 +11,9 @@ func Index(w http.ResponseWriter, r *http.Request) {
 }
 
 func FieldChooseSelectsGet(w http.ResponseWriter, r *http.Request) {
+    // var item Items
+
+    items := FieldChooseSelectsBuild()
     w.Header().Set("Content-Type", "application/json; charset=UTF-8")   //Explicitly set the content type of the response. Go can implicitly guess it, but it isn't always accurate.
     w.Header().Set("Access-Control-Allow-Origin", "*")
     w.WriteHeader(http.StatusOK)    //Explicitly set the status code of the response.
