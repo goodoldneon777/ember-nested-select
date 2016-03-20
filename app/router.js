@@ -6,8 +6,7 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  this.route('get-selects');
-  this.route('get-selects', { path: '/go' });
+  // this.route('get-selects', { path: '/'});
 });
 
 export default Router;

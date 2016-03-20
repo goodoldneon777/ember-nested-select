@@ -4,16 +4,16 @@ module.exports = function(environment) {
   var ENV = {
     contentSecurityPolicy: {
       'default-src': "'none'",
-      'script-src': "'self' 'unsafe-eval' github.com localhost",
+      'script-src': "'self' 'unsafe-eval' github.com localhost localhost:8080 localhost:80",
       'font-src': "'self'",
-      'connect-src': "'self' 'unsafe-eval' github.com localhost",
+      'connect-src': "'self' 'unsafe-eval' github.com localhost localhost:8080 localhost:80",
       'img-src': "'self'",
       'style-src': "'self'",
       'media-src': "'self'"
     },
     modulePrefix: 'data-chart',
     environment: environment,
-    baseURL: '/',
+    baseURL: '/dist',
     locationType: 'auto',
     EmberENV: {
       FEATURES: {
@@ -34,6 +34,7 @@ module.exports = function(environment) {
     // ENV.APP.LOG_TRANSITIONS = true;
     // ENV.APP.LOG_TRANSITIONS_INTERNAL = true;
     // ENV.APP.LOG_VIEW_LOOKUPS = true;
+    ENV.baseURL = '/';
     ENV['ember-cli-mirage'] = {
       enabled: false
     }

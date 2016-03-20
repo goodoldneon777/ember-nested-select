@@ -1,43 +1,42 @@
 import Ember from 'ember';
 
 
-export default Ember.Route.extend({
-  	model: function() {
-  		
+export default Ember.Route.extend({  	
+	// model: function() {
+ //        var store = this.store;
+ //        $.get("http://localhost/ember/data-chart/php/get-selects.php", function(data) {
+ //            data = JSON.parse(data);
 
-	    return Ember.RSVP.hash({
-	        // fieldChooseSelects: this.store.findAll('fieldChooseSelect'),
-	        // fieldChooseSelects: $.getJSON('../json/getSelects.json')
-          	// fieldChooseFilters: this.store.findAll('fieldChooseFilter')
-	    });
-  	}
-  	
-  	// model() {
-   //  	this.store.push({
-   //  		data: [{
-   //    			type: 'fieldChooseSelect',
-			// 	id: 1,
-			// 	attributes: {
-			// 		name: 'root',
-			// 		options: [{
-			// 		  	text: 'Chemistry',
-			// 		  	value: 'chem',
-			// 		  	children: ['chem_type']
-			// 		}, {
-			// 			text: 'Temperature',
-			// 			value: 'temp',
-			// 			children: ['temp_type']
-			// 		}, {
-			// 		  	text: 'Equipment',
-			// 		  	value: 'equipment',
-			// 		  	children: ['equipment']
-			// 		}]
-			// 	}
-   //    		}]
-   //  	});
-  	// }
+ //            store.push({
+ //                data: data.data
+ //            });
+ //        });
+ //    }
 
 
+    // model: function() {
+    //     var store = this.store;
+    //     console.log(1);
+    //     $.post("http://localhost:8080/items", function(data) {
+    //         console.log(data);
+    //         data = JSON.parse(data);
+
+    //         store.push({
+    //             data: data.data
+    //         });
+    //     });
+    // }
+
+
+    model: function() {
+        var store = this.store;
+
+        $.get("http://localhost/api/field-choose-selects", function(data) {
+            store.push({
+                data: data
+            });
+        });
+    }
 
 });
 
