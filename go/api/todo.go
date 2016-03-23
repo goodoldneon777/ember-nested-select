@@ -29,3 +29,5 @@ type Option struct {
 }
 
 type Items []Item
+
+type Options []Option
