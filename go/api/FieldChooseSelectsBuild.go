@@ -15,14 +15,10 @@ func FieldChooseSelectsBuild() Items {
     var item Item
     var options Options
     var option Option
+    var child string
     var prevNameId string
     var prevOptionValue string
     currentId := 1
-
-    var name_id string      //Clear on each iteration.
-    var option_text string  //Clear on each iteration.
-    var option_value string //Clear on each iteration.
-    var child_name_id string      //Clear on each iteration.
 
 
     query := `
@@ -30,7 +26,6 @@ func FieldChooseSelectsBuild() Items {
         FROM param_dropdown_option o
         LEFT OUTER JOIN param_input_child c
             ON o.option_value = c.option_value
-        WHERE o.name_id like 'C%' and o.name_id != 'category'
         ORDER BY o.name_id asc, o.order_num asc, c.order_num asc
     `
     
@@ -48,37 +43,38 @@ func FieldChooseSelectsBuild() Items {
 
     //Loop thru the query recordset.
     for rows.Next() {
+        var name_id string          //Clear on each iteration.
+        var option_text string      //Clear on each iteration.
+        var option_value string     //Clear on each iteration.
+        var child_name_id string    //Clear on each iteration.
         rows.Scan(&name_id, &option_text, &option_value, &child_name_id)    //Assign row data to variables.        
 
 
-        
-
-
-        if name_id != prevNameId  &&  len(prevNameId) > 0 {    //If the loop has gotten to a new dropdown (new name_id).
+        //If the loop has gotten to a new dropdown (i.e. a new name_id), then we want to "add" the previous dropdown we were building.
+        if name_id != prevNameId  &&  len(prevNameId) > 0 {    
+            options = append(options, option)
+            item.Attributes.Options = options
             items = append(items, item) //Add the current item to the output array.
 
             currentId += 1
 
-            item := Item{}
-            _ = item
-
             options = nil
+            option.Children = nil
         } else {
             if option_value != prevOptionValue  &&  len(prevOptionValue) > 0 {    //If the loop has gotten to a new dropdown (new name_id).\
                 options = append(options, option)   //Add the current option to the option array.
-
-                option := Option{}
-                _ = option
-            } else {
-                // option.Children = append(option.Children, child_name_id)
+                option.Children = nil
             }
-
         }
 
+        child = child_name_id
 
         option.Text = option_text
         option.Value = option_value
         option.FilterEnable = true
+        if len(child) > 0 {
+            option.Children = append(option.Children, child)
+        }
 
         item.Id = currentId
         item.Type = "fieldChooseSelect"
@@ -90,13 +86,9 @@ func FieldChooseSelectsBuild() Items {
     }
 
 
-    // item = Item{}
-    // item.Id = currentId
-    // item.Type = "fieldChooseSelect"
-    // item.Attributes.Name = name_id
+    options = append(options, option)
+    item.Attributes.Options = options
     items = append(items, item) //Add the current item to the output array.
-
-
 
     return items
 }
