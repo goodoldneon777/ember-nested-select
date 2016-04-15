@@ -6,7 +6,8 @@ const Router = Ember.Router.extend({
 });
 
 Router.map(function() {
-  // this.route('get-selects', { path: '/'});
+  this.route('fieldSelects');
+  this.route('fieldChooseSelects');
 });
 
 export default Router;

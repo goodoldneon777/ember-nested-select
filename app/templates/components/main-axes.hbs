@@ -1,18 +1,37 @@
 <h4>Y-Axis</h4>
 <div class="y-axis category-wrap form-group">
-	{{field-choose-area
-		selects = model.fieldChooseSelects
-		filters = model.fieldChooseFilters
-		name = "root"}}
+	{{field-choose-area}}
+	{{!-- {{field-choose-area
+		selects = selects
+		filters = filters
+		name = "root"}} --}}
+
+{{!-- 	{{field-choose-area
+		selects = selects
+		name = "root"}} --}}
 </div>
 
 
-<h4>X-Axis</h4>
+{{!-- {{#if store}}
+	store exists<br>
+{{/if}} --}}
+
+{{!-- {{#if selects}}
+	selects exists<br>
+{{/if}}
+
+
+{{#each selects as |select|}}
+	1<br>
+{{/each}}
+ --}}
+
+{{!-- <h4>X-Axis</h4>
 <div class="x-axis category-wrap form-group">
 	{{field-choose-area
 		selects = model.fieldChooseSelects
 		filters = model.fieldChooseFilters
 		name = "root"}}
-</div>
+</div> --}}
 
 

@@ -4,11 +4,15 @@
 {{/each}}
 </select>
 
+{{#if optionName}}
+	optionName exists<br>
+{{/if}}
+
 <div class="children">
 
 	{{!-- {{#if setOption}}
 		{{#each select.options as |option|}}
-			{{#if (eq option.value setOption)}} --}}
+			{{#if (eq option.value setOption)}}
 				{{#each option.children as |child|}}
 					{{field-choose-select
 						selects = selects

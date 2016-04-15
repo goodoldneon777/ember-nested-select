@@ -24,4 +24,17 @@ var routes = Routes{
         "/field-choose-selects",
         FieldChooseSelectsGet,
     },
+    Route{
+        "Foo",
+        "GET",
+        // "/blah?filter%5Bname%5D={todoId}",
+        "/blah",
+        Foo,
+    },
+    Route{
+        "FieldFiltersGet",
+        "GET",
+        "/field-filters",
+        FieldFiltersGet,
+    },
 }

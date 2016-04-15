@@ -21,6 +21,7 @@ type Dropdown struct {
     Name 	string 		`json:"name"`
     Options []Option 	`json:"options"`
 }
+
 type Option struct {
     Text string `json:"text"`
     Value string `json:"value"`
@@ -31,3 +32,29 @@ type Option struct {
 type Items []Item
 
 type Options []Option
+
+type OutputJSON struct {
+	Data Items `json:"data"`
+}
+
+
+
+type FieldFilterOutputJSON struct {
+    Data []FieldFilter `json:"data"`
+}
+
+type FieldFilter struct {
+    Type string `json:"type"`
+    Id int `json:"id"`
+    Attributes FieldFilterDropdown `json:"attributes"`
+}
+
+type FieldFilterDropdown struct {
+    Name    string      `json:"name"`
+    Options []FieldFilterDropdownOption    `json:"options"`
+}
+
+type FieldFilterDropdownOption struct {
+    Text string `json:"text"`
+    Value string `json:"value"`
+}

@@ -10,7 +10,7 @@ import (
 )
 
 // Give us some seed data
-func FieldChooseSelectsBuild() Items {
+func FieldChooseSelectsBuild(filterName string) OutputJSON {
     var items Items
     var item Item
     var options Options
@@ -18,16 +18,36 @@ func FieldChooseSelectsBuild() Items {
     var child string
     var prevNameId string
     var prevOptionValue string
+    var output OutputJSON
     currentId := 1
 
 
+    // query := `
+    //     SELECT o.name_id, o.option_text, o.option_value, c.child_name_id
+    //     FROM param_input as i
+    //     INNER JOIN param_dropdown_option as o
+    //         ON i.name_id = o.name_id
+    //     LEFT OUTER JOIN param_input_child as c
+    //         ON o.option_value = c.option_value
+    //     WHERE i.type = 'field_select'
+    //     ORDER BY o.name_id asc, o.order_num asc, c.order_num asc
+    // `
+
     query := `
         SELECT o.name_id, o.option_text, o.option_value, c.child_name_id
-        FROM param_dropdown_option o
-        LEFT OUTER JOIN param_input_child c
+        FROM param_input as i
+        INNER JOIN param_dropdown_option as o
+            ON i.name_id = o.name_id
+        LEFT OUTER JOIN param_input_child as c
             ON o.option_value = c.option_value
-        ORDER BY o.name_id asc, o.order_num asc, c.order_num asc
+        WHERE i.type = 'field_select'
     `
+
+    if (filterName != "") {
+        query += " AND i.name_id = '" + filterName + "'"
+    }
+
+    query += " ORDER BY o.name_id asc, o.order_num asc, c.order_num asc"
     
     //Connect to the data_chart database.
     db, err := sql.Open("mysql", "root:steel87@/data_chart")
@@ -90,5 +110,8 @@ func FieldChooseSelectsBuild() Items {
     item.Attributes.Options = options
     items = append(items, item) //Add the current item to the output array.
 
-    return items
+    output.Data = items
+
+    // return items
+    return output
 }
